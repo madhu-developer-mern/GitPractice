@@ -73,3 +73,9 @@ h1 {
 #todo-list li button:hover {
     background-color: #c82333;
 }
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+

@@ -7,19 +7,28 @@ addBtn.addEventListener('click', () => {
     const task = todoInput.value.trim();
     if(task !== "") {
         const li = document.createElement('li');
-        li.innerHTML = `
-            ${task} 
-            <button onclick="deleteTask(this)">Delete</button>
-        `;
+
+        // Add task text
+        li.textContent = task;
+
+        // Toggle completion on click
+        li.addEventListener('click', () => {
+            li.classList.toggle('completed');
+        });
+
+        // Add delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering toggle
+            li.remove();
+        });
+
+        li.appendChild(deleteBtn);
         todoList.appendChild(li);
         todoInput.value = '';
     }
 });
-
-// Delete todo
-function deleteTask(btn) {
-    btn.parentElement.remove();
-}
 
 // Optional: Press Enter key to add todo
 todoInput.addEventListener('keypress', (e) => {
